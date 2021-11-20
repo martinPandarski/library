@@ -9,12 +9,13 @@ import {
   Button,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import styles from "./Login.module.scss";
+import styles from "./Register.module.scss";
 import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function Register() {
   const [values, setValues] = useState({
     password: "",
+    rePassword: "",
     showPassword: false,
   });
 
@@ -57,6 +58,37 @@ export default function Login() {
                   id="password"
                   type={values.showPassword ? "text" : "password"}
                   value={values.password}
+                  onChange={handleChange("password")}
+                  inputProps={{
+                    className: styles.input,
+                  }}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.showPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+              <FormControl
+              className={styles.FormControl}
+                variant="outlined"
+              >
+                <label htmlFor="rePassword">Repeat Password</label>
+                <OutlinedInput
+                  id="rePassword"
+                  type={values.showPassword ? "text" : "password"}
+                  value={values.rePassword}
                   onChange={handleChange("password")}
                   inputProps={{
                     className: styles.input,
