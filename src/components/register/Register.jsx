@@ -17,6 +17,7 @@ export default function Register() {
     password: "",
     rePassword: "",
     showPassword: false,
+    showRePassword: false,
   });
 
   const handleChange = (prop) => (event) => {
@@ -25,6 +26,10 @@ export default function Register() {
 
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleClickShowRePassword = () => {
+    setValues({ ...values, showRePassword: !values.showRePassword });
   };
 
   const handleMouseDownPassword = (event) => {
@@ -37,7 +42,8 @@ export default function Register() {
         <Grid item xs={5}>
           <div className={styles["login-container"]}>
             <img src="/Logo.png" alt="digi-books" />
-            <p className={styles.heading}>Welcome Back!</p>
+            <h3 className={styles.heading}>Welcome to the best book database!</h3>
+            <p>Create your profile</p>
             <Stack direction="column">
               <FormControl variant="outlined">
                 <label htmlFor="email">Email</label>
@@ -50,7 +56,7 @@ export default function Register() {
                 ></OutlinedInput>
               </FormControl>
               <FormControl
-              className={styles.FormControl}
+                className={styles.FormControl}
                 variant="outlined"
               >
                 <label htmlFor="password">Password</label>
@@ -81,15 +87,15 @@ export default function Register() {
                 />
               </FormControl>
               <FormControl
-              className={styles.FormControl}
+                className={styles.FormControl}
                 variant="outlined"
               >
                 <label htmlFor="rePassword">Repeat Password</label>
                 <OutlinedInput
                   id="rePassword"
-                  type={values.showPassword ? "text" : "password"}
+                  type={values.showRePassword ? "text" : "password"}
                   value={values.rePassword}
-                  onChange={handleChange("password")}
+                  onChange={handleChange("rePassword")}
                   inputProps={{
                     className: styles.input,
                   }}
@@ -97,11 +103,11 @@ export default function Register() {
                     <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
+                        onClick={handleClickShowRePassword}
                         onMouseDown={handleMouseDownPassword}
                         edge="end"
                       >
-                        {values.showPassword ? (
+                        {values.showRePassword ? (
                           <VisibilityOff />
                         ) : (
                           <Visibility />
@@ -111,13 +117,10 @@ export default function Register() {
                   }
                 />
               </FormControl>
-              <Link className={styles.recover} to="login">
-                Recover password
-              </Link>
               <Button className={styles.button} variant="contained">
-                Log in
+                Sign Up
               </Button>
-              <p className={styles["sign-up"]}>You don't have an account? <Link to="/register"> SIGN UP HERE</Link></p>
+              <p className={styles["login"]}>You have an account?<Link to="/login">LOG IN HERE</Link></p>
             </Stack>
           </div>
         </Grid>
