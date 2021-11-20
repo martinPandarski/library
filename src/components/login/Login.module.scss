@@ -1,0 +1,49 @@
+.wrapper {
+  max-width: 100%;
+  max-height: 100%;
+
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 135px;
+
+    .heading {
+      margin: 50px;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #0d242e;
+      text-transform: uppercase !important;
+    }
+    .FormControl:nth-of-type(2) {
+        margin-top: 50px ;
+      }
+    .input {
+      width: 500px !important;
+    }
+    .recover {
+      margin-left: 423px;
+      margin-top: 10px;
+    }
+    .button {
+      margin-top: 50px;
+      background-color: #08c642;
+      height: 42px;
+      font-weight: bold;
+    }
+    .sign-up{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        font-weight: bold;
+    }
+  }
+}
+
+.library {
+  width: 100%;
+  height: auto;
+}
