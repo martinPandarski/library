@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Navigate } from "react-router";
 import * as yup from "yup";
 import { omit } from "lodash";
 import { useFormik } from "formik";
@@ -30,6 +29,7 @@ const validationSchema = yup.object({
     .matches(/^[aA-zZ\s\d]+$/, "Special characters are not allowed."),
   repeatPassword: yup
     .string("Enter your password")
+    .required("This is a required field.")
     .oneOf([yup.ref("password"), null], "Passwords must match")
 
 })
@@ -47,7 +47,6 @@ export default function Register() {
     validationSchema,
     onSubmit: async (values) => {
       const payload = omit(values, ["repeatPassword"]);
-      console.log(payload)
       const response = await fetch(
         `https://books-library-dev.herokuapp.com/api/user/register`,
         {
@@ -61,7 +60,7 @@ export default function Register() {
       if (!response.ok) {
         throw new Error("Register failed");
       } else {
-        <Navigate to="login" />
+
       }
     },
   });
