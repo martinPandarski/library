@@ -130,7 +130,7 @@ export default function Login() {
                 <Link className={styles.recover} to="login">
                   Recover password
                 </Link>
-                <Button type="submit" className={styles.button} variant="contained">
+                <Button disabled={!(formik.isValid && formik.dirty)} type="submit" className={styles.button} variant="contained">
                   Log in
                 </Button>
                 <p className={styles["sign-up"]}>You don't have an account? <Link to="/register"> SIGN UP HERE</Link></p>

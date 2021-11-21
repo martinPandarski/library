@@ -162,7 +162,7 @@ export default function Register() {
                     }}
                   />
                 </FormControl>
-                <Button type="submit" className={styles.button} variant="contained">
+                <Button disabled={!(formik.isValid && formik.dirty)} type="submit" className={styles.button} variant="contained">
                   Sign Up
                 </Button>
                 <p className={styles["login"]}>You have an account?<Link to="/login">LOG IN HERE</Link></p>
