@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Navigate } from "react-router";
 import * as yup from "yup";
+import { omit } from "lodash";
 import { useFormik } from "formik";
-
 import {
   InputAdornment,
   IconButton,
@@ -30,7 +30,7 @@ const validationSchema = yup.object({
     .matches(/^[aA-zZ\s\d]+$/, "Special characters are not allowed."),
   repeatPassword: yup
     .string("Enter your password")
-  // .oneOf([yup.ref("password"), null], "Passwords must match")
+    .oneOf([yup.ref("password"), null], "Passwords must match")
 
 })
 
@@ -46,7 +46,7 @@ export default function Register() {
     },
     validationSchema,
     onSubmit: async (values) => {
-      const payload = { ...values.username, ...values.password }
+      const payload = omit(values, ["repeatPassword"]);
       console.log(payload)
       const response = await fetch(
         `https://books-library-dev.herokuapp.com/api/user/register`,
@@ -61,7 +61,7 @@ export default function Register() {
       if (!response.ok) {
         throw new Error("Register failed");
       } else {
-        <Navigate to="/login" />
+        <Navigate to="login" />
       }
     },
   });
@@ -80,13 +80,16 @@ export default function Register() {
             <form onSubmit={formik.handleSubmit}>
               <Stack direction="column">
                 <FormControl variant="outlined">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="username">Email</label>
                   <TextField
-                    id="email"
+                    id="username"
                     // type="email"
                     inputProps={{
                       className: styles.input,
                     }}
+                    onChange={formik.handleChange}
+                    error={formik.touched.username && Boolean(formik.errors.username)}
+                    helperText={formik.touched.username && formik.errors.username}
                   ></TextField>
                 </FormControl>
                 <FormControl
@@ -102,6 +105,8 @@ export default function Register() {
                     inputProps={{
                       className: styles.input,
                     }}
+                    error={formik.touched.password && Boolean(formik.errors.password)}
+                    helperText={formik.touched.password && formik.errors.password}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -135,6 +140,8 @@ export default function Register() {
                     inputProps={{
                       className: styles.input,
                     }}
+                    error={formik.touched.repeatPassword && Boolean(formik.errors.repeatPassword)}
+                    helperText={formik.touched.repeatPassword && formik.errors.repeatPassword}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
