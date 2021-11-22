@@ -1,0 +1,9 @@
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    .logo {
+        width: 130px;
+        height: 29px;
+    }
+}
