@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import styles from "./Login.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const validationSchema = yup.object({
@@ -33,6 +33,7 @@ const validationSchema = yup.object({
 
 
 export default function Login() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const formik = useFormik({
@@ -55,6 +56,8 @@ export default function Login() {
       if (response.ok) {
         const data = await response.json();
         dispatch(authActions.setUser(data.token)); //Change if something more than token is returned
+        navigate("/");
+
       } else {
         throw new Error("Login failed");
       }

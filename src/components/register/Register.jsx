@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import styles from "./Register.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   username: yup
@@ -35,6 +35,7 @@ const validationSchema = yup.object({
 })
 
 export default function Register() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
@@ -60,7 +61,7 @@ export default function Register() {
       if (!response.ok) {
         throw new Error("Register failed");
       } else {
-
+        navigate("/login");
       }
     },
   });
