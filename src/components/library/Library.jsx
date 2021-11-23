@@ -7,6 +7,7 @@ import styles from './Library.module.scss'
 import { useEffect, useState } from "react";
 
 export default function Library() {
+    const [searchParams, setSearchParams] = useState("")
     const [books, setBooks] = useState([])
     const isMobile = useMediaQuery("(max-width: 900px)")
 
@@ -20,12 +21,27 @@ export default function Library() {
                 }
             });
             const data = await response.json();
-            console.log(data[0].author)
             setBooks(data)
         }
         getBooks()
     }, [])
 
+    const getFilteredBooks = async (searchParams) => {
+        if (searchParams.length > 0) {
+            const pattern = { "pattern": searchParams }
+            const response = await fetch(`https://books-library-dev.herokuapp.com/api/book/search`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify(pattern)
+            });
+            const data = await response.json();
+            setBooks(data)
+        }
+
+    };
 
 
     return (
@@ -36,6 +52,7 @@ export default function Library() {
                     size="small"
                     classes={{ root: styles.search }}
                     label="Search"
+                    onChange={(e) => getFilteredBooks(e.target.value)}
                     InputProps={{
                         endAdornment:
                             (<InputAdornment position="end"><SearchOutlinedIcon /></InputAdornment>)
