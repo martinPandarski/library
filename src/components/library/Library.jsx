@@ -12,36 +12,42 @@ export default function Library() {
     const isMobile = useMediaQuery("(max-width: 900px)")
 
     useEffect(() => {
-        async function getBooks() {
-            const response = await fetch(`https://books-library-dev.herokuapp.com/api/book`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                }
-            });
-            const data = await response.json();
-            setBooks(data)
+        if (searchParams === "") {
+            async function getBooks() {
+                const response = await fetch(`https://books-library-dev.herokuapp.com/api/book`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                const data = await response.json();
+                setBooks(data)
+            }
+            getBooks()
         }
-        getBooks()
-    }, [])
+    }, [books, searchParams])
 
-    const getFilteredBooks = async (searchParams) => {
-        if (searchParams.length > 0) {
-            const pattern = { "pattern": searchParams }
-            const response = await fetch(`https://books-library-dev.herokuapp.com/api/book/search`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${localStorage.getItem('token')}`
-                },
-                body: JSON.stringify(pattern)
-            });
-            const data = await response.json();
-            setBooks(data)
-        }
-
-    };
+    useEffect(() => {
+        async function getFilteredBooks() {
+            if (searchParams.length > 0) {
+                const pattern = { "pattern": searchParams }
+                const response = await fetch(`https://books-library-dev.herokuapp.com/api/book/search`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(pattern)
+                });
+                const data = await response.json();
+                setBooks(data)
+            } else {
+                setBooks([]);
+            }
+        };
+        getFilteredBooks();
+    }, [searchParams])
 
 
     return (
@@ -52,7 +58,7 @@ export default function Library() {
                     size="small"
                     classes={{ root: styles.search }}
                     label="Search"
-                    onChange={(e) => getFilteredBooks(e.target.value)}
+                    onChange={(e) => setSearchParams(e.target.value)}
                     InputProps={{
                         endAdornment:
                             (<InputAdornment position="end"><SearchOutlinedIcon /></InputAdornment>)
