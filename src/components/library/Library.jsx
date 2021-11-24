@@ -7,26 +7,29 @@ import styles from './Library.module.scss'
 import { useEffect, useState } from "react";
 
 export default function Library() {
-    const [searchParams, setSearchParams] = useState("")
+    const [searchParams, setSearchParams] = useState("");
+    const [initialBooks, setInitialBooks] = useState([]);
     const [books, setBooks] = useState([])
     const isMobile = useMediaQuery("(max-width: 900px)")
 
     useEffect(() => {
-        if (searchParams === "") {
-            async function getBooks() {
-                const response = await fetch(`https://books-library-dev.herokuapp.com/api/book`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                const data = await response.json();
-                setBooks(data)
-            }
-            getBooks()
+
+        async function getBooks() {
+            const response = await fetch(`https://books-library-dev.herokuapp.com/api/book`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            const data = await response.json();
+            setInitialBooks(data);
+            setBooks(data)
         }
-    }, [books, searchParams])
+        getBooks()
+
+        console.log("asd")
+    }, [])
 
     useEffect(() => {
         async function getFilteredBooks() {
@@ -43,7 +46,7 @@ export default function Library() {
                 const data = await response.json();
                 setBooks(data)
             } else {
-                setBooks([]);
+                setBooks(initialBooks);
             }
         };
         getFilteredBooks();

@@ -29,7 +29,7 @@ export default function BookDetails() {
     return (
         <div className={styles.container}>
             <div className={styles["image-cover"]}>
-                <img className={styles.image} src={book.image} alt="nz" />
+                <img className={styles.image} src="/book-cover.png" alt="nz" />
             </div>
             <div className={styles.info}>
                 <div className={styles.heading}>
