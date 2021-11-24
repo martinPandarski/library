@@ -18,7 +18,6 @@ function App() {
     return (
         <div className="App">
             <Router>
-                <Header />
                 <Routes>
                     <Route path="login" element={<Login />} />
                     <Route path="register" element={<Register />} />
@@ -29,6 +28,7 @@ function App() {
                     <Route path="book/:id" element={<BookDetails />}></Route>
                 </Routes>
             </Router>
+            {/* <Header /> */}
         </div>
     );
 }

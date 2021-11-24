@@ -11,6 +11,7 @@ import {
   Stack,
   Button,
   TextField,
+  Paper,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import styles from "./Login.module.scss";
@@ -20,7 +21,6 @@ import { Link, useNavigate } from "react-router-dom";
 const validationSchema = yup.object({
   username: yup
     .string("Enter your email")
-    // .email("Enter a valid email address.")
     .required("This is a required field.")
     .min(4, "The minimum length should be 4 characters.")
     .matches(/^[aA-zZ\s\d]+$/, "Special characters are not allowed."),
@@ -74,77 +74,69 @@ export default function Login() {
 
   return (
     <div className={styles.wrapper}>
-      <Grid container >
-        <Grid item xs={5}>
-          <div className={styles["login-container"]}>
-            <img src="/Logo.png" alt="digi-books" />
-            <p className={styles.heading}>Welcome Back!</p>
-            <form onSubmit={formik.handleSubmit}>
-              <Stack direction="column">
-                <FormControl variant="outlined">
-                  <label htmlFor="username">Email</label>
-                  <TextField
-                    id="username"
-                    // type="email"
-                    value={formik.values.username}
-                    inputProps={{
-                      className: styles.input,
-                    }}
-                    onChange={formik.handleChange}
-                    error={formik.touched.username && Boolean(formik.errors.username)}
-                    helperText={formik.touched.username && formik.errors.username}
-                  ></TextField>
-                </FormControl>
-                <FormControl
-                  className={styles.FormControl}
-                  variant="outlined"
-                >
-                  <label htmlFor="password">Password</label>
-                  <TextField
-                    id="password"
-                    type={showPassword ? "text" : "password"}
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    inputProps={{
-                      className: styles.input,
-                    }}
-                    error={formik.touched.password && Boolean(formik.errors.password)}
-                    helperText={formik.touched.password && formik.errors.password}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                          >
-                            {showPassword ? (
-                              <VisibilityOff />
-                            ) : (
-                              <Visibility />
-                            )}
-                          </IconButton>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </FormControl>
-                <Link className={styles.recover} to="login">
-                  Recover password
-                </Link>
-                <Button disabled={!(formik.isValid && formik.dirty)} type="submit" className={styles.button} variant="contained">
-                  Log in
-                </Button>
-                <p className={styles["sign-up"]}>You don't have an account? <Link to="/register"> SIGN UP HERE</Link></p>
-              </Stack>
-            </form>
-          </div>
-        </Grid>
-        <Grid item xs={7}>
-          <img className={styles.library} src="/Library.png" alt="library" />
-        </Grid>
-      </Grid>
+      <div className={styles["login-container"]}>
+        <img className={styles.logo} src="/Logo.png" alt="digi-books" />
+        <Paper elevation="0" className={styles.asd}>
+          <p className={styles.heading}>Welcome Back!</p>
+          <form onSubmit={formik.handleSubmit}>
+            <Stack direction="column">
+              <FormControl variant="outlined">
+                <label htmlFor="username">Username</label>
+                <TextField
+                  id="username"
+                  // type="email"
+                  value={formik.values.username}
+                  onChange={formik.handleChange}
+                  error={formik.touched.username && Boolean(formik.errors.username)}
+                  helperText={formik.touched.username && formik.errors.username}
+                ></TextField>
+              </FormControl>
+              <FormControl
+                className={styles.FormControl}
+                variant="outlined"
+              >
+                <label htmlFor="password">Password</label>
+                <TextField
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  error={formik.touched.password && Boolean(formik.errors.password)}
+                  helperText={formik.touched.password && formik.errors.password}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </FormControl>
+              <Link className={styles.recover} to="">
+                Recover password
+              </Link>
+              <Button disabled={!(formik.isValid && formik.dirty)} type="submit" className={styles.button} variant="contained">
+                Log in
+              </Button>
+              <p className={styles["sign-up"]}>You don't have an account? <Link to="/register"> SIGN UP HERE</Link></p>
+            </Stack>
+          </form>
+        </Paper>
+      </div>
+
+      <img className={styles.library} src="/Library.png" alt="library" />
+
     </div>
   );
 }
