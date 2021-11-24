@@ -7,7 +7,6 @@ import {
   InputAdornment,
   IconButton,
   FormControl,
-  Grid,
   Stack,
   Button,
   TextField,
@@ -76,7 +75,7 @@ export default function Login() {
     <div className={styles.wrapper}>
       <div className={styles["login-container"]}>
         <img className={styles.logo} src="/Logo.png" alt="digi-books" />
-        <Paper elevation="0" className={styles.asd}>
+        <Paper elevation="0" className={styles.paper}>
           <p className={styles.heading}>Welcome Back!</p>
           <form onSubmit={formik.handleSubmit}>
             <Stack direction="column">
@@ -84,9 +83,10 @@ export default function Login() {
                 <label htmlFor="username">Username</label>
                 <TextField
                   id="username"
-                  // type="email"
+                  type="username"
                   value={formik.values.username}
                   onChange={formik.handleChange}
+                  size="small"
                   error={formik.touched.username && Boolean(formik.errors.username)}
                   helperText={formik.touched.username && formik.errors.username}
                 ></TextField>
@@ -101,6 +101,7 @@ export default function Login() {
                   type={showPassword ? "text" : "password"}
                   value={formik.values.password}
                   onChange={formik.handleChange}
+                  size="small"
                   error={formik.touched.password && Boolean(formik.errors.password)}
                   helperText={formik.touched.password && formik.errors.password}
                   InputProps={{
@@ -134,9 +135,7 @@ export default function Login() {
           </form>
         </Paper>
       </div>
-
       <img className={styles.library} src="/Library.png" alt="library" />
-
     </div>
   );
 }
