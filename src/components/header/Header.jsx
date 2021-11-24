@@ -12,11 +12,9 @@ import { authActions } from "../../store/auth-slice";
 
 
 
-
-
 export default function Header() {
     const [anchor, setAnchor] = useState(null);
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState("/");
     const isMobile = useMediaQuery("(max-width: 900px)");
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -29,6 +27,11 @@ export default function Header() {
         setAnchor(null);
     };
 
+    const handleRouteChange = (event, newValue) => {
+        setValue(newValue);
+        navigate(newValue);
+    };
+
     const handleLogout = async () => {
         const response = await fetch(`https://books-library-dev.herokuapp.com/api/user/logout`, {
             method: "POST",
@@ -38,7 +41,6 @@ export default function Header() {
             }
         });
         const data = await response.json();
-        console.log(data);
         dispatch(authActions.logout());
         navigate("/login");
         handleCloseMenu();
@@ -62,12 +64,11 @@ export default function Header() {
                             backgroundColor: "#08C642",
                             paddingBottom: "2px"
                         }
-                    }} onChange={(event, newValue) => {
-                        setValue(newValue);
-                    }}>
-                        <Tab label="Library" value="1"></Tab>
-                        <Tab label="Settings" value="2" />
+                    }} onChange={handleRouteChange}>
+                        <Tab label="Library" value="/" />
+                        <Tab label="Settings" value="/settings" />
                     </TabList>
+
 
                 </TabContext>
                 <IconButton
