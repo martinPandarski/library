@@ -1,0 +1,63 @@
+.settings {
+    display: flex;
+    text-transform: uppercase;
+    .general-settings {
+        box-shadow: 0px 5px 15px #00347026;
+        padding: 50px 20px;
+        width: 46%;
+        height: 850px;
+        margin: 28px 20px 28px 58px;
+        .setting {
+            .setting-name {
+                padding-right: 15px;
+            }
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+    .book-settings {
+        box-shadow: 0px 5px 15px #00347026;
+        padding: 50px 20px;
+        width: 46%;
+        height: 850px;
+        margin: 28px 50px 28px 20px;
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            .add-new-btn {
+                background-color: #08c642;
+                font-weight: bold;
+            }
+        }
+        .setting {
+            .setting-name {
+                padding-right: 15px;
+            }
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .settings {
+        display: block;
+        padding: 30px;
+        .general-settings {
+            width: 90%;
+            margin: 0;
+            .setting {
+                display: block;
+            }
+        }
+        .book-settings {
+            width: 90%;
+            margin: 0;
+            .setting {
+                display: block;
+            }
+        }
+    }
+}

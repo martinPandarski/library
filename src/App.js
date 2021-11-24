@@ -7,6 +7,7 @@ import Header from "./components/header/Header";
 import Library from "./components/library/Library";
 import BookDetails from "./components/library/BookDetails";
 import { useSelector } from "react-redux";
+import Settings from "./components/settings/Settings";
 
 function PrivateOutlet() {
     const isLoggedIn = localStorage.getItem("token");
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/" element={<Library />}>
                         {/* <Route element={<Library />} /> */}
                     </Route>
+                    <Route path="/settings" element={<Settings />} />
                     <Route path="book/:id" element={<BookDetails />}></Route>
                 </Routes>
             </Router>

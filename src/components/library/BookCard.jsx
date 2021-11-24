@@ -27,7 +27,7 @@ export default function BookCard({ book }) {
                         </div>
                     </div>
                 </div>
-                <Button onClick={() => navigate(`/book/${book._id}`)} className={styles.button} style={{ minWidth: "20px" }} variant="contained" ><PlayArrowIcon fontSize="medium" /></Button>
+                <Button onClick={() => navigate(`/book/${book._id}`)} style={{ minWidth: "20px" }} variant="contained" className={styles.button}  ><PlayArrowIcon fontSize="medium" /></Button>
 
             </div>
         </Container>
