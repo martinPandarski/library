@@ -46,15 +46,12 @@
         }
     }
 }
-
 .library {
     max-width: 100%;
-    height: auto;
 }
 
 @media only screen and (max-width: 1000px) {
     .wrapper {
-        height: 100vh;
         justify-content: center;
         background-image: url("./Library-hd.png");
         .register-container {
