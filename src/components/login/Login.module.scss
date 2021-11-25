@@ -7,12 +7,15 @@
         flex-direction: column;
         justify-content: center;
         margin-left: 15rem;
+        .logo {
+            margin-bottom: 30px;
+        }
         .heading {
-            margin: 50px;
-            font-size: 30px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 120px;
             color: #0d242e;
+            text-align: center;
             text-transform: uppercase !important;
         }
         .FormControl:nth-of-type(2) {

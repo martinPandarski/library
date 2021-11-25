@@ -14,8 +14,9 @@ const HorizontalLine = () => {
             <hr
                 style={{
                     width: "100%",
-                    height: "0.7px",
+                    height: "1px",
                     background: "#1076b5",
+                    borderWidth: "0px",
                 }}
             />
             <img src="/blue-arrow.png" alt="arrow" />
@@ -55,7 +56,7 @@ export default function Settings() {
             </div>
             <div className={styles["book-settings"]}>
                 <div className={styles["top-bar"]}>
-                    <h3>Book Settings</h3>
+                    <h3 className={styles["book-settings-header"]}>Book Settings</h3>
                     <Button
                         className={styles["add-new-btn"]}
                         variant="contained"
@@ -69,6 +70,7 @@ export default function Settings() {
                         <HorizontalLine />
                     </div>
                 ))}
+
             </div>
         </div>
     );

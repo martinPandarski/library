@@ -82,10 +82,12 @@ export default function Library() {
                 spacing={2}
                 container
             >
-                {books.map((book) => (
-                    <Grid item xl={6}>
+                {books.map((book, index) => (
+
+                    <Grid key={index} item xl={6}>
                         <BookCard key={book._id} book={book} />
                     </Grid>
+
                 ))}
             </Grid>
         </div>

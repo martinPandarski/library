@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router";
 import { Button, useMediaQuery } from "@mui/material";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import moment from "moment";
-import { Typography } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import styles from "./BookDetails.module.scss";
 
@@ -37,18 +37,19 @@ export default function BookDetails() {
         <div className={styles.container}>
             {Boolean(isMobile) && (
                 <Button
+                    style={{ color: "#0D242E" }}
                     className={styles["back-button"]}
                     onClick={() => navigate(-1)}
                 >
                     <ArrowLeftIcon fontSize="large" /> Library
                 </Button>
             )}
-            <div className={styles["image-cover"]}>
-                <img className={styles.image} src="/book-cover.png" alt="nz" />
-            </div>
+            <Paper elevation={"1"} className={styles["image-cover"]}>
+                <img className={styles.image} src={book.image} alt="img" />
+            </Paper>
             <div className={styles.info}>
                 <div className={styles.heading}>
-                    <Typography variant="h5">{book.name}</Typography>
+                    <Typography fontSize="18px" fontWeight="bold" variant="h5">{book.name}</Typography>
                 </div>
 
                 <Typography

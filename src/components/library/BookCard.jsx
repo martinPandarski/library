@@ -23,7 +23,7 @@ export default function BookCard({ book }) {
                         <div className={styles.details}>
                             <h3 className={styles.title}>{book.name}</h3>
                             <h4 className={styles.author}>{book.author}</h4>
-                            <p>
+                            <p className={styles.genre}>
                                 Genre: <b>{book.genre?.name}</b>
                             </p>
                             <div className={styles.dates}>

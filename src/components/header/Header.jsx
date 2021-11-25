@@ -18,11 +18,11 @@ import MobileHeader from "./MobileHeader";
 
 export default function Header() {
     const [anchor, setAnchor] = useState(null);
+    const location = useLocation();
     const [value, setValue] = useState("/");
     const isMobile = useMediaQuery("(max-width: 900px)");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const location = useLocation();
 
     const handleOpenMenu = (event) => {
         setAnchor(event.currentTarget);

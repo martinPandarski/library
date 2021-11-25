@@ -18,10 +18,11 @@
             flex-direction: column;
             justify-content: space-around;
             padding-left: 20px;
+            width: 400px;
             .title {
                 text-transform: uppercase;
                 font-weight: bold;
-                font-size: 22px;
+                font-size: 18px;
             }
             .author {
                 color: #1076b5;
@@ -52,11 +53,21 @@
             flex-direction: column;
             text-align: center;
             align-items: center;
-            .title {
-                font-size: 12px;
+            .details {
+                padding: 0;
+                .title {
+                    margin-top: 10px;
+                    font-size: 18px;
+                    text-align: center;
+                }
+                .author,
+                .genre {
+                    padding: 10px;
+                }
             }
         }
         .dates {
+            padding: 10px;
             align-items: center;
             p {
                 font-size: 12px;

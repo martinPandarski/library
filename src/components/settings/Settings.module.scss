@@ -25,9 +25,12 @@
         .top-bar {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             .add-new-btn {
                 background-color: #08c642;
                 font-weight: bold;
+                box-shadow: 0px 3px 6px #00000029;
+                font-size: 16px;
             }
         }
         .setting {
@@ -48,6 +51,7 @@
         .general-settings {
             width: 90%;
             margin: 0;
+            margin-bottom: 50px;
             .setting {
                 display: block;
             }
@@ -55,6 +59,11 @@
         .book-settings {
             width: 90%;
             margin: 0;
+            .book-settings-header {
+                font-weight: bold;
+                font-size: 20px;
+            }
+
             .setting {
                 display: block;
             }

@@ -101,6 +101,8 @@ export default function MobileHeader() {
                 PaperProps={{
                     sx: {
                         borderRadius: "0px 0px 10px 10px",
+                        height: "308px",
+
                     },
                 }}
                 className={styles.drawer}
@@ -121,6 +123,7 @@ export default function MobileHeader() {
                         />
                     </ListItem>
                     <ListItem
+                        className={styles.listItem}
                         button
                         onClick={() => {
                             navigate("/");
@@ -130,6 +133,7 @@ export default function MobileHeader() {
                         <ListItem>Library</ListItem>
                     </ListItem>
                     <ListItem
+                        className={styles.listItem}
                         button
                         onClick={() => {
                             navigate("/settings");
