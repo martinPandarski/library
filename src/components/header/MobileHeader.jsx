@@ -1,27 +1,33 @@
-import AppBar from '@mui/material/AppBar';
-import { useState } from 'react';
-import Toolbar from '@mui/material/Toolbar';
-import { Drawer, IconButton, List, ListItem, Menu, MenuItem } from "@mui/material"
-import CloseIcon from '@mui/icons-material/Close';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import MenuIcon from '@mui/icons-material/Menu';
-import styles from './VerticalHeader.module.scss';
+import AppBar from "@mui/material/AppBar";
+import { useState } from "react";
+import Toolbar from "@mui/material/Toolbar";
+import {
+    Drawer,
+    IconButton,
+    List,
+    ListItem,
+    Menu,
+    MenuItem,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import MenuIcon from "@mui/icons-material/Menu";
+import styles from "./MobileHeader.module.scss";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth-slice";
-import { useNavigate } from 'react-router';
+import { useNavigate } from "react-router";
 
-
-export default function VerticalHeader(props) {
+export default function MobileHeader() {
     const [openDrawer, setOpenDrawer] = useState(false);
     const [anchor, setAnchor] = useState(null);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleOpenNavigationDrawer = () => {
-        setOpenDrawer(true)
+        setOpenDrawer(true);
     };
     const handleCloseNavigationDrawer = () => {
-        setOpenDrawer(false)
+        setOpenDrawer(false);
     };
 
     const handleOpenMenu = (event) => {
@@ -36,23 +42,32 @@ export default function VerticalHeader(props) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
         });
         dispatch(authActions.logout());
         navigate("/login");
         handleCloseMenu();
-    }
+    };
 
     return (
         <>
             <AppBar position="static" color="default">
                 <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleOpenNavigationDrawer}>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        onClick={handleOpenNavigationDrawer}
+                    >
                         <MenuIcon />
                     </IconButton>
                     <div className={styles["content-wrapper"]}>
-                        <img className={styles.logo} src="/Logo.png" alt="digi-books" />
+                        <img
+                            className={styles.logo}
+                            src="/Logo.png"
+                            alt="digi-books"
+                        />
                         <IconButton
                             size="large"
                             aria-controls="menu"
@@ -66,13 +81,13 @@ export default function VerticalHeader(props) {
                             id="menu"
                             anchorEl={anchor}
                             anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                vertical: "top",
+                                horizontal: "right",
                             }}
                             keepMounted
                             transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                vertical: "top",
+                                horizontal: "right",
                             }}
                             open={Boolean(anchor)}
                             onClose={handleCloseMenu}
@@ -85,8 +100,8 @@ export default function VerticalHeader(props) {
             <Drawer
                 PaperProps={{
                     sx: {
-                        borderRadius: "0px 0px 10px 10px"
-                    }
+                        borderRadius: "0px 0px 10px 10px",
+                    },
                 }}
                 className={styles.drawer}
                 open={openDrawer}
@@ -94,19 +109,37 @@ export default function VerticalHeader(props) {
                 onClose={handleCloseNavigationDrawer}
             >
                 <List>
-                    <ListItem button onClick={() => handleCloseNavigationDrawer()}>
-                        <CloseIcon /> <img className={styles.logo} src="/logo.png" alt="logo" />
+                    <ListItem
+                        button
+                        onClick={() => handleCloseNavigationDrawer()}
+                    >
+                        <CloseIcon />{" "}
+                        <img
+                            className={styles.logo}
+                            src="/logo.png"
+                            alt="logo"
+                        />
                     </ListItem>
-                    <ListItem button onClick={() => { navigate("/"); handleCloseNavigationDrawer() }}>
+                    <ListItem
+                        button
+                        onClick={() => {
+                            navigate("/");
+                            handleCloseNavigationDrawer();
+                        }}
+                    >
                         <ListItem>Library</ListItem>
                     </ListItem>
-                    <ListItem button onClick={() => { navigate("/settings"); handleCloseNavigationDrawer() }}>
+                    <ListItem
+                        button
+                        onClick={() => {
+                            navigate("/settings");
+                            handleCloseNavigationDrawer();
+                        }}
+                    >
                         <ListItem>Settings</ListItem>
                     </ListItem>
                 </List>
             </Drawer>
         </>
-
-
-    )
+    );
 }

@@ -8,8 +8,9 @@
         color: black;
     }
     .logo {
-        height: 30px;
-        width: 137px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
     .MuiTabs-root.MuiTabs-scroller.MuiTabs-indicator {
         background-color: green !important;
