@@ -8,10 +8,10 @@ import Library from "./components/library/Library";
 import BookDetails from "./components/library/BookDetails";
 import Settings from "./components/settings/Settings";
 
-function PrivateOutlet() {
-    const isLoggedIn = localStorage.getItem("token");
-    return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
-}
+// function PrivateOutlet() {
+//     const isLoggedIn = localStorage.getItem("token");
+//     return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
+// }
 
 function App() {
     const location = useLocation();

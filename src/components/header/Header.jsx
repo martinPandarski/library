@@ -37,17 +37,13 @@ export default function Header() {
     };
 
     const handleLogout = async () => {
-        const response = await fetch(
-            `https://books-library-dev.herokuapp.com/api/user/logout`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-            }
-        );
-        const data = await response.json();
+        await fetch(`https://books-library-dev.herokuapp.com/api/user/logout`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
         dispatch(authActions.logout());
         navigate("/login");
         handleCloseMenu();
