@@ -1,0 +1,96 @@
+.container {
+    margin: 30px 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    .image-cover {
+        position: absolute;
+        right: 60%;
+        display: flex;
+        justify-content: center;
+        width: 675px;
+        height: 940px;
+        box-shadow: 7px 4px 20px 0px #00347026;
+        z-index: 1;
+        .image {
+            justify-content: center;
+        }
+    }
+    .info {
+        position: relative;
+        top: 200px;
+        left: 19.5%;
+        border-radius: 5px;
+        margin: auto;
+        width: 1100px;
+        box-shadow: 0px 5px 15px #00347026;
+        .heading {
+            background-color: #08c642;
+            color: white;
+            padding: 25px 25px 25px 35px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 0px 5px 5px 0px;
+        }
+        p,
+        h6 {
+            padding-left: 35px;
+            margin-bottom: 1em;
+        }
+        h6 {
+            margin-top: 55px;
+        }
+        .author {
+            color: #1076b5;
+            margin: 1em 0 1em;
+            font-weight: bold;
+        }
+        .description {
+            font-weight: bold;
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-top: 50px;
+        .image-cover {
+            width: 190px;
+            height: 263px;
+            position: relative;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            .image {
+                width: 190px;
+                height: 263px;
+            }
+        }
+        .info {
+            top: 0;
+            left: 0;
+            width: 374px;
+            position: relative;
+            .heading {
+                border-radius: 5px;
+                padding: 10px 20px 10px 20px;
+            }
+        }
+        p {
+            padding: 5px;
+        }
+    }
+}
+.back-button {
+    position: absolute !important;
+    left: -10px;
+    top: 10%;
+    color: black;
+}
+.MuiButton-textPrimary {
+    color: black !important;
+}

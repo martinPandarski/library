@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 3px 6px #00000029;
+    height: 53px;
+    .back-button {
+        color: black;
+    }
+    .logo {
+        height: 30px;
+        width: 137px;
+    }
+    .MuiTabs-root.MuiTabs-scroller.MuiTabs-indicator {
+        background-color: green !important;
+    }
+}
