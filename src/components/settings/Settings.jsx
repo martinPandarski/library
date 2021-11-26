@@ -46,7 +46,9 @@ export default function Settings() {
     return (
         <div className={styles.settings}>
             <div className={styles["general-settings"]}>
-                <h3>General Settings</h3>
+                <h3 className={styles["general-settings-header"]}>
+                    General Settings
+                </h3>
                 {generalSettings.map((setting, index) => (
                     <div className={styles.setting} key={index}>
                         <p className={styles["setting-name"]}>{setting}</p>
@@ -56,7 +58,9 @@ export default function Settings() {
             </div>
             <div className={styles["book-settings"]}>
                 <div className={styles["top-bar"]}>
-                    <h3 className={styles["book-settings-header"]}>Book Settings</h3>
+                    <h3 className={styles["book-settings-header"]}>
+                        Book Settings
+                    </h3>
                     <Button
                         className={styles["add-new-btn"]}
                         variant="contained"
@@ -70,7 +74,6 @@ export default function Settings() {
                         <HorizontalLine />
                     </div>
                 ))}
-
             </div>
         </div>
     );

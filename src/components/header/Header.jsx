@@ -37,31 +37,40 @@ export default function Header() {
     };
 
     const handleLogout = async () => {
-        await fetch(`https://books-library-dev.herokuapp.com/api/user/logout`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-        });
-        dispatch(authActions.logout());
-        navigate("/login");
-        handleCloseMenu();
+        try {
+            await fetch(
+                `https://books-library-dev.herokuapp.com/api/user/logout`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "token"
+                        )}`,
+                    },
+                }
+            );
+            dispatch(authActions.logout());
+            navigate("/login");
+            handleCloseMenu();
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return Boolean(isMobile) ? (
         <MobileHeader />
     ) : (
         <header className={styles.container}>
-            {location.pathname === "/" ? (
-                <img className={styles.logo} src="/Logo.png" alt="digi-books" />
-            ) : (
+            {location.pathname.includes("book") ? (
                 <Button
                     className={styles["back-button"]}
                     onClick={() => navigate(-1)}
                 >
                     <ArrowLeftIcon fontSize="large" /> Library
                 </Button>
+            ) : (
+                <img className={styles.logo} src="/Logo.png" alt="digi-books" />
             )}
             <TabContext value={value}>
                 <TabList

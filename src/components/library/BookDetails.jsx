@@ -44,12 +44,14 @@ export default function BookDetails() {
                     <ArrowLeftIcon fontSize="large" /> Library
                 </Button>
             )}
-            <Paper elevation={"1"} className={styles["image-cover"]}>
+            <Paper elevation={1} className={styles["image-cover"]}>
                 <img className={styles.image} src={book.image} alt="img" />
             </Paper>
             <div className={styles.info}>
                 <div className={styles.heading}>
-                    <Typography fontSize="18px" fontWeight="bold" variant="h5">{book.name}</Typography>
+                    <Typography fontSize="18px" fontWeight="bold" variant="h5">
+                        {book.name}
+                    </Typography>
                 </div>
 
                 <Typography
