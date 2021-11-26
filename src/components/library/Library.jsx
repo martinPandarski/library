@@ -83,11 +83,15 @@ export default function Library() {
                 container
             >
                 {books.map((book, index) => (
+                    <>
+                        <Grid key={index} item xl={6}>
+                            <BookCard key={book._id} book={book} />
+                        </Grid>
+                        <Grid key={index} item xl={6}>
+                            <BookCard key={book._id} book={book} />
+                        </Grid>
 
-                    <Grid key={index} item xl={6}>
-                        <BookCard key={book._id} book={book} />
-                    </Grid>
-
+                    </>
                 ))}
             </Grid>
         </div>
